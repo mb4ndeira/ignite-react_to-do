@@ -7,7 +7,7 @@
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/mb4ndeira/ignite-react_to-do">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mb4ndeira/ignite-react_to-do">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mb4ndeira/ignite-react_to-do?color=%23007acc">
 
   <img alt="License" src="https://img.shields.io/github/license/mb4ndeira/ignite-react_to-do">
 </p>
