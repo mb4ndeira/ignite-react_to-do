@@ -5,7 +5,7 @@
 
 </div>
 
-<h1 align="center">To Do</h1>
+<h1 align="center">To-do</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/ignite-react_to-do">
@@ -79,6 +79,6 @@ $ yarn start
 
 ## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+This project is under license from MIT. For more details, see the [LICENSE](./LICENSE.md) file.
 
 &#xa0;
