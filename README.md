@@ -8,19 +8,13 @@
 <h1 align="center">To Do</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/to-do?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/ignite-react_to-do">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mb4ndeira/to-do?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mb4ndeira/ignite-react_to-do">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mb4ndeira/to-do?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mb4ndeira/ignite-react_to-do">
 
-  <img alt="License" src="https://img.shields.io/github/license/mb4ndeira/to-do?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/mb4ndeira/to-do?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/mb4ndeira/to-do?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/mb4ndeira/to-do?color=56BEB8" /> -->
+  <img alt="License" src="https://img.shields.io/github/license/mb4ndeira/ignite-react_to-do">
 </p>
 
 <!-- Status -->
