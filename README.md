@@ -34,7 +34,7 @@
 
 ## 📷 Gallery ##
 
-<img src="https://github.com/mb4ndeira/ignite-react_to-do/public/to-do-list.png" alt="to-do list" />
+<img src="https://github.com/mb4ndeira/ignite-react_to-do/blob/main/public/to-do-list.png" alt="to-do list" />
 
 ## :sparkles: Features ##
 
@@ -74,6 +74,6 @@ $ yarn start
 
 ## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](./LICENSE.md) file.
+This project is under license from MIT. For more details, see the [LICENSE](https://github.com/mb4ndeira/ignite-react_to-do/blob/main/LICENSE.md) file.
 
 &#xa0;
