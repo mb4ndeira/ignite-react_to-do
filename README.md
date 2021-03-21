@@ -58,10 +58,8 @@ Describe your project
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Requirements ##
@@ -72,10 +70,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/mb4ndeira/to-do
+$ git clone https://github.com/mb4ndeira/ignite-react_to-do
 
 # Access
-$ cd to-do
+$ cd ignite-react_to-do
 
 # Install dependencies
 $ yarn
@@ -91,7 +89,7 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/mb4ndeira" target="_blank">Matheus Bandeira</a>
+Made with <a href="https://github.com/mb4ndeira" target="_blank">Matheus Bandeira</a>
 
 &#xa0;
 
