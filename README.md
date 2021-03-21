@@ -3,7 +3,6 @@
 
   &#xa0;
 
-  <!-- <a href="https://todo.netlify.app">Demo</a> -->
 </div>
 
 <h1 align="center">To Do</h1>
@@ -88,9 +87,4 @@ $ yarn start
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-
-Made with <a href="https://github.com/mb4ndeira" target="_blank">Matheus Bandeira</a>
-
 &#xa0;
-
-<a href="#top">Back to top</a>
