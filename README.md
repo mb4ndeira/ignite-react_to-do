@@ -1,8 +1,3 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="To Do" />
-
-  &#xa0;
-
 </div>
 
 <h1 align="center">To-do</h1>
@@ -37,9 +32,9 @@
 
 <br>
 
-## :dart: About ##
+## 📷 Gallery ##
 
-Describe your project
+<img src="https://github.com/mb4ndeira/" alt="Be The Hero" />
 
 ## :sparkles: Features ##
 
