@@ -38,9 +38,9 @@
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Create tasks;\
+:heavy_check_mark: Check tasks complete;\
+:heavy_check_mark: Delete tasks;
 
 ## :rocket: Technologies ##
 
