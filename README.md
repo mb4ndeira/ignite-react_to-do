@@ -34,7 +34,7 @@
 
 ## 📷 Gallery ##
 
-<img src="https://github.com/mb4ndeira/" alt="Be The Hero" />
+<img src="https://github.com/mb4ndeira/ignite-react_to-do/public/to-do-list.png" alt="to-do list" />
 
 ## :sparkles: Features ##
 
