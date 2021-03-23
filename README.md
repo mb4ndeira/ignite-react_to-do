@@ -1,6 +1,6 @@
 <img src="https://github.com/mb4ndeira/ignite-react_to-do/blob/main/public/to-do-list.png" alt="to-do list" />
 
-<h1 align="center">To-do</h1>
+
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/ignite-react_to-do">
