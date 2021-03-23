@@ -1,8 +1,8 @@
 </div>
 
-<h1 align="center">To-do</h1>
+<h1 >To-do</h1>
 
-<p align="center">
+<p >
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/ignite-react_to-do">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/mb4ndeira/ignite-react_to-do">
