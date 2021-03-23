@@ -1,5 +1,3 @@
-## 📷 Gallery ##
-
 <img src="https://github.com/mb4ndeira/ignite-react_to-do/blob/main/public/to-do-list.png" alt="to-do list" />
 
 <h1 align="center">To-do</h1>
@@ -31,8 +29,6 @@
 </p>
 
 <br>
-
-
 
 ## :sparkles: Features ##
 
