@@ -68,6 +68,6 @@ $ yarn start
 
 ## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](https://github.com/mb4ndeira/to-do_react/blob/main/LICENSE.md) file.
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 &#xa0;
