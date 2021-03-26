@@ -1,4 +1,4 @@
-<img src="https://github.com/mb4ndeira/ignite-react_to-do/blob/main/public/to-do-list.png" alt="to-do list" />
+<img src="https://github.com/mb4ndeira/to-do_react/blob/main/public/to-do-list.png" alt="to-do list" />
 
 <h1 align="center">To.do</h1>
 
@@ -52,10 +52,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/mb4ndeira/ignite-react_to-do
+$ git clone https://github.com/mb4ndeira/to-do_react
 
 # Access
-$ cd ignite-react_to-do
+$ cd to-do_react
 
 # Install dependencies
 $ yarn
@@ -68,6 +68,6 @@ $ yarn start
 
 ## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](https://github.com/mb4ndeira/ignite-react_to-do/blob/main/LICENSE.md) file.
+This project is under license from MIT. For more details, see the [LICENSE](https://github.com/mb4ndeira/to-do_react/blob/main/LICENSE.md) file.
 
 &#xa0;
