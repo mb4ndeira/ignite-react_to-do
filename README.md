@@ -3,13 +3,13 @@
 <h1 align="center">To.do</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/ignite-react_to-do">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mb4ndeira/to-do_react">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mb4ndeira/ignite-react_to-do">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mb4ndeira/to-do_react">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mb4ndeira/ignite-react_to-do?color=%23007acc">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mb4ndeira/to-do_react?color=%23007acc">
 
-  <img alt="License" src="https://img.shields.io/github/license/mb4ndeira/ignite-react_to-do">
+  <img alt="License" src="https://img.shields.io/github/license/mb4ndeira/to-do_react">
 </p>
 
 <!-- Status -->
