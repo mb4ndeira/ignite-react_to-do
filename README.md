@@ -1,4 +1,4 @@
-<img src="https://github.com/mb4ndeira/to-do_react/blob/main/public/to-do-list.png" alt="to-do list" />
+<img src="/public/to-do-list.png" alt="to-do" />
 
 <h1 align="center">To.do</h1>
 
