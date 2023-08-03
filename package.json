@@ -1,12 +1,11 @@
 {
-  "name": "01-github-explorer",
+  "name": "next.do",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve",
-    "build": "cross-env NODE_ENV=production webpack",
-    "test": "jest --watchAll"
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
     "react": "^17.0.1",
@@ -20,8 +19,6 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
     "@types/react-dom": "^17.0.0",
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.0",
@@ -29,7 +26,6 @@
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.6.3",
     "node-sass": "^5.0.0",
     "react-app-polyfill": "^2.0.0",
     "react-refresh": "^0.9.0",
