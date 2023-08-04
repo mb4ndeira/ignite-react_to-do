@@ -1,3 +1,13 @@
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+}
+
+button, .checkmark {
+  cursor: pointer;
+}
+
 section.task-list {
   background: var(--shapes);
   border-radius: 1rem;
