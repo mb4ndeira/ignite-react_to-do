@@ -25,6 +25,12 @@ const Checkbox = ({
   );
 };
 
+const checkEnterPress = (func?: () => void) => (e: React.KeyboardEvent) => {
+  if (e.key !== "Enter") return;
+
+  return func?.();
+};
+
 export default function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
@@ -72,6 +78,7 @@ export default function Tasks() {
             placeholder="Adicionar novo to.do"
             aria-label="Adicionar novo to.do"
             onChange={(e) => setNewTaskTitle(e.target.value)}
+            onKeyDown={checkEnterPress(addTask)}
             value={newTaskTitle}
           />
           <button type="button" aria-label="Botão de adição" onClick={addTask}>
