@@ -7,9 +7,15 @@ import { FiCheckSquare, FiTrash } from "react-icons/fi";
 import { CgCheck } from "react-icons/cg";
 
 type Task = {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
+};
+
+const checkEnterPress = (func?: () => void) => (e: React.KeyboardEvent) => {
+  if (e.key !== "Enter") return;
+
+  return func?.();
 };
 
 const Checkbox = ({
@@ -22,10 +28,7 @@ const Checkbox = ({
     <div
       className={"checkbox " + (checked ? "checkbox--checked" : "")}
       tabIndex={0}
-      onKeyDown={checkEnterPress(() => {
-        console.log("tudo");
-        inputRef.current?.click();
-      })}
+      onKeyDown={checkEnterPress(() => inputRef.current?.click())}
     >
       <div />
       <CgCheck />
@@ -40,30 +43,26 @@ const Checkbox = ({
   );
 };
 
-const checkEnterPress = (func?: () => void) => (e: React.KeyboardEvent) => {
-  if (e.key !== "Enter") return;
-
-  return func?.();
-};
-
 export default function Tasks() {
+  const addTaskInputRef = useRef<HTMLInputElement>(null);
+
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const addTask = () => {
-    if (!newTaskTitle) return;
+    if (!addTaskInputRef.current?.value) return;
 
     const newTask = {
-      id: Math.random(),
-      title: newTaskTitle,
+      id: Math.random().toString(),
+      title: addTaskInputRef.current?.value,
       completed: false,
     };
 
-    setTasks((oldState) => [...oldState, newTask]);
-    setNewTaskTitle("");
+    setTasks((prev) => [...prev, newTask]);
+
+    addTaskInputRef.current.value = "";
   };
 
-  const completeTask = (id: number) => {
+  const completeTask = (id: string) => {
     const newTask = tasks.map((task) =>
       task.id === id
         ? {
@@ -76,7 +75,7 @@ export default function Tasks() {
     setTasks(newTask);
   };
 
-  const deleteTask = (id: number) => {
+  const deleteTask = (id: string) => {
     const filteredTasks = tasks.filter((task) => task.id != id);
 
     setTasks(filteredTasks);
@@ -92,9 +91,8 @@ export default function Tasks() {
             name="to-do"
             placeholder="Adicionar novo to.do"
             aria-label="Adicionar novo to.do"
-            onChange={(e) => setNewTaskTitle(e.target.value)}
+            ref={addTaskInputRef}
             onKeyDown={checkEnterPress(addTask)}
-            value={newTaskTitle}
           />
           <button type="button" aria-label="Botão de adição" onClick={addTask}>
             <FiCheckSquare color="#fff" />
@@ -109,15 +107,13 @@ export default function Tasks() {
               aria-describedby={`${task.id}-title`}
               tabIndex={0}
               key={task.id}
+              draggable={true}
             >
               <div className={task.completed ? "completed" : ""}>
                 <Checkbox
                   checked={task.completed}
                   readOnly
-                  onClick={() => {
-                    console.log("porra");
-                    completeTask(task.id);
-                  }}
+                  onClick={() => completeTask(task.id)}
                 />
                 <p id={`${task.id}-title`}>{task.title}</p>
               </div>
