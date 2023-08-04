@@ -1,6 +1,7 @@
 .checkbox {
   $width: 18px;
   $height: 18px;
+  $radius: 2.5px;
   $iconScale: 1.5;
   $horizontalOverflow: (($width * $iconScale) - $width);
   $verticalOverflow: (($height * $iconScale) - $height);
@@ -12,7 +13,7 @@
   z-index: 0;
   margin: (-($verticalOverflow / 2)) (-($horizontalOverflow / 2))
     (-($verticalOverflow / 2)) (-($horizontalOverflow / 2));
-  border-radius: 3px;
+  border-radius: $radius;
 
   > input {
     position: absolute;
@@ -35,7 +36,7 @@
     width: $width;
     height: $height;
     background-color: var(--background);
-    border-radius: inherit;
+    border-radius: $radius;
   }
 
   > div {

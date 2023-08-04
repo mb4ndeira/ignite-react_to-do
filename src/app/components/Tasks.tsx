@@ -2,7 +2,7 @@
 
 import "../styles/task-list.scss";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FiCheckSquare, FiTrash } from "react-icons/fi";
 import { CgCheck } from "react-icons/cg";
 
@@ -16,11 +16,26 @@ const Checkbox = ({
   checked,
   ...rest
 }: { checked: boolean } & React.InputHTMLAttributes<HTMLInputElement>) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <div className={"checkbox " + (checked ? "checkbox--checked" : "")}>
+    <div
+      className={"checkbox " + (checked ? "checkbox--checked" : "")}
+      tabIndex={0}
+      onKeyDown={checkEnterPress(() => {
+        console.log("tudo");
+        inputRef.current?.click();
+      })}
+    >
       <div />
       <CgCheck />
-      <input type="checkbox" checked={checked} {...rest} />
+      <input
+        {...rest}
+        type="checkbox"
+        checked={checked}
+        tabIndex={0}
+        ref={inputRef}
+      />
     </div>
   );
 };
@@ -99,7 +114,10 @@ export default function Tasks() {
                 <Checkbox
                   checked={task.completed}
                   readOnly
-                  onClick={() => completeTask(task.id)}
+                  onClick={() => {
+                    console.log("porra");
+                    completeTask(task.id);
+                  }}
                 />
                 <p id={`${task.id}-title`}>{task.title}</p>
               </div>
