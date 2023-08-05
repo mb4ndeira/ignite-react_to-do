@@ -1,5 +1,5 @@
-import Tasks from "./components/Tasks";
-import { Header } from "./components/Header";
+import Header from "../components/Header";
+import Tasks from "./home/Tasks";
 
 export default function App() {
   return (

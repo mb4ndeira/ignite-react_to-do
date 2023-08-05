@@ -1,9 +1,10 @@
 "use client";
 
-import "../styles/header.scss";
+import "./styles.scss";
+
 import Image from "next/image";
 
-export function Header() {
+export default function Header() {
   return (
     <header className="header">
       <div>

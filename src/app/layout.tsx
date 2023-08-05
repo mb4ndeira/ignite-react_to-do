@@ -1,4 +1,4 @@
-import "./styles/globals.scss";
+import "./globals.scss";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
