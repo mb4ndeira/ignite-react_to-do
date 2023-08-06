@@ -112,6 +112,7 @@ export default function Tasks() {
           data={tasks}
           renderItem={renderTaskItem}
           handleDragEnd={handleDragEnd}
+          autoAnimate={true}
         />
       </div>
     </div>

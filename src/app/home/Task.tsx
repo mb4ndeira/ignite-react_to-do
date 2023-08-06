@@ -44,7 +44,7 @@ export default function Task({
   return (
     <SortableListItem
       className={
-        "flex cursor-grab items-center justify-between border-b bg-white px-3.5 py-4" +
+        "mt-0.5 flex cursor-grab items-center justify-between border-b bg-white px-3.5 py-4" +
         (grabbedTask
           ? " rounded-lg border-b-white"
           : " border-b-white-smoke-regular")
@@ -73,12 +73,12 @@ export default function Task({
         </p>
       </div>
       <button
-        className="bg-transparent group z-10  border-none"
+        className="bg-transparent group z-10  h-6 w-6 border-none text-white-smoke-extra-dark"
         type="button"
         role="button"
         aria-label="Deletar to-do"
         onClick={() => deleteTask(id)}
-        children={<FiTrash className="text-red group-hover:brightness-50" />}
+        children={<FiTrash className=" group-hover:text-red" />}
       />
     </SortableListItem>
   );
