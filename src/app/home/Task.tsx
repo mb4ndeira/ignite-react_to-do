@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FiTrash } from "react-icons/fi";
+import { FiTrash, FiPlusSquare } from "react-icons/fi";
 
 import Checkbox from "@/components/Checkbox";
 import { SortableListItemType } from "@/library/drag&Drop/SortableListItem";
@@ -10,22 +10,29 @@ import Task from "@/types/Task";
 interface TaskProps {
   SortableListItem: SortableListItemType;
   task: Task;
+  isSubtask: boolean;
   grabbedTask: string;
   grabTask: (id: Task["id"]) => void;
   completeTask: (id: Task["id"]) => void;
   deleteTask: (id: Task["id"]) => void;
+  addSubtask: (id: Task["id"]) => void;
 }
 
-const totalVerticalPadding = 16 * 2;
-const lineHeight = 24;
+const calculateItemHeight = (textHeight: number) => {
+  const totalVerticalPadding = 16 * 2;
+
+  return totalVerticalPadding + textHeight;
+};
 
 export default function Task({
   SortableListItem,
   task: { id, title, completed },
+  isSubtask,
   grabbedTask,
   grabTask,
   completeTask,
   deleteTask,
+  addSubtask,
 }: TaskProps) {
   const titleRef = useRef<HTMLParagraphElement>(null);
 
@@ -34,17 +41,16 @@ export default function Task({
   useEffect(() => {
     if (!titleRef.current) return;
 
-    const numberOfLines = Math.floor(
-      (titleRef.current?.clientHeight as number) / lineHeight,
+    setItemHeight(
+      calculateItemHeight(titleRef.current?.clientHeight as number),
     );
-
-    setItemHeight(totalVerticalPadding + numberOfLines * lineHeight);
   }, [title]);
 
   return (
     <SortableListItem
       className={
-        "mt-0.5 flex cursor-grab items-center justify-between border-b bg-white px-3.5 py-4" +
+        "mt-0.5 flex cursor-grab items-center justify-between border-b bg-white py-4  pr-1.5" +
+        (isSubtask ? " pl-8.5 " : " pl-3.5 ") +
         (grabbedTask
           ? " rounded-lg border-b-white"
           : " border-b-white-smoke-regular")
@@ -55,7 +61,7 @@ export default function Task({
       height={itemHeight}
       onActivation={() => grabTask(id)}
     >
-      <div className="z-10 flex items-center gap-4 outline-none">
+      <div className="flex items-center gap-4 outline-none">
         <Checkbox
           checked={completed}
           readOnly
@@ -72,14 +78,30 @@ export default function Task({
           {title}
         </p>
       </div>
-      <button
-        className="bg-transparent group z-10  h-6 w-6 border-none text-white-smoke-extra-dark"
-        type="button"
-        role="button"
-        aria-label="Deletar to-do"
-        onClick={() => deleteTask(id)}
-        children={<FiTrash className=" group-hover:text-red" />}
-      />
+      <div className="flex items-center gap-4 outline-none">
+        {!isSubtask && (
+          <button
+            className="bg-transparent group z-10 flex h-6 w-6  items-center justify-center border-none "
+            type="button"
+            role="button"
+            aria-label="Adicionar sub-to-do"
+            onClick={() => addSubtask(id)}
+            children={
+              <FiPlusSquare className={"text-white-smoke-extra-dark"} />
+            }
+          />
+        )}
+        <button
+          className="bg-transparent group z-10 flex h-6 w-6  items-center justify-center border-none "
+          type="button"
+          role="button"
+          aria-label="Deletar to-do"
+          onClick={() => deleteTask(id)}
+          children={
+            <FiTrash className="text-white-smoke-extra-dark group-hover:text-red" />
+          }
+        />
+      </div>
     </SortableListItem>
   );
 }

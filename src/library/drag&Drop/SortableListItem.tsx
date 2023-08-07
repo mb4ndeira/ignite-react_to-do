@@ -32,7 +32,6 @@ const SortableListItem = ({
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    height,
   };
 
   return (
