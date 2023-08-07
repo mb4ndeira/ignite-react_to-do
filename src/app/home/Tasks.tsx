@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { FiCheckSquare } from "react-icons/fi";
-import { DragEndEvent, UniqueIdentifier } from "@dnd-kit/core";
+import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 
 import SortableList, { RenderItem } from "@/library/drag&Drop/SortableList";
@@ -28,6 +28,14 @@ export default function Tasks() {
           parent: "1",
         },
       ],
+      parent: null,
+    },
+    {
+      id: "3",
+      title:
+        "As a frontend developer, your goal is to develop a task management application for John, a busy professional struggling to stay organized. You must create auser-friendly and visually appealing interface that allows John to create, track, andremove tasks.",
+      completed: false,
+      subtasks: [],
       parent: null,
     },
   ]);
@@ -146,13 +154,13 @@ export default function Tasks() {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between">
-        <h2 className="text-4xl font-semibold text-onyx-regular">
+      <div className="flex flex-col items-center justify-between md:flex-row">
+        <h2 className="text-3xl font-semibold text-onyx-regular md:text-3xl lg:text-4xl">
           Minhas tasks
         </h2>
-        <div className="flex items-center gap-2">
+        <div className="mt-8 flex w-full items-center gap-2 md:mt-0 md:w-max">
           <input
-            className="rounded-lg border-none bg-white-smoke-regular px-6 py-2.5 text-base text-onyx-dark placeholder-onyx-extra-light"
+            className=" w-full rounded-lg border-none bg-white-smoke-regular px-6 py-2.5 text-base text-onyx-dark placeholder-onyx-extra-light lg:w-96"
             type="text"
             name="to-do"
             placeholder="Adicionar novo to.do"

@@ -23,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={poppins.className + " bg-white-smoke-light text-night-black"}
+        className={
+          poppins.className +
+          " bg-white text-night-black lg:bg-white-smoke-light"
+        }
       >
         {children}
       </body>

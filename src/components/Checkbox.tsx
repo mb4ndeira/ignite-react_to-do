@@ -13,7 +13,9 @@ export default function Checkbox({
 
   return (
     <div
-      className={"relative flex items-center justify-center rounded"}
+      className={
+        "relative flex items-center justify-center rounded " + rest.className
+      }
       tabIndex={0}
       onKeyDown={onKeyPress("Enter", () => inputRef.current?.click())}
     >

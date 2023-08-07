@@ -14,10 +14,9 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className="task-list z-10 flex items-start justify-center">
+      <main className="task-list lg: z-10 flex items-start justify-center">
         <div
-          className="z-10 -mt-40 w-full max-w-5xl rounded-2xl bg-white px-14 py-16
-          pb-20"
+          className="z-10 -mt-40  w-full max-w-5xl rounded-2xl bg-white px-10 py-16 pb-20 md:px-14 lg:h-max"
           style={{ filter: "drop-shadow(0px 1px 40px rgba(0, 0, 0, 0.03)" }}
         >
           <Tasks />
