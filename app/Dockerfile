@@ -1,8 +1,9 @@
 FROM node:20-alpine
 
+ARG PACKAGE_JSON_PATH
 WORKDIR /app
 
-COPY package*.json ./
+COPY $PACKAGE_JSON_PATH ./
 
 RUN npm install
 

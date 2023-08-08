@@ -4,13 +4,33 @@ services:
     container_name: "next.do"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./app/Dockerfile
+      args:
+        - PACKAGE_JSON_PATH=./app/package.json
     ports:
       - "3000:3000"
     volumes:
-      - ./src:/app/src
-      - ./public:/app/public
-      - ./tsconfig.json:/app/tsconfig.json
-      - ./next.config.js:/app/next.config.js
-      - ./tailwind.config.js:/app/tailwind.config.js
-      - ./postcss.config.js:/app/postcss.config.js
+      - ./app/src:/app/src
+      - ./app/public:/app/public
+      - ./app/tsconfig.json:/app/tsconfig.json
+      - ./app/next.config.js:/app/next.config.js
+      - ./app/tailwind.config.js:/app/tailwind.config.js
+      - ./app/postcss.config.js:/app/postcss.config.js
+
+  server:
+    container_name: "next.do_server"
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+      args:
+        - PACKAGE_JSON_PATH=./server/package.json
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./server/src:/server/src
+      - ./server/test:/server/test
+      - ./server/tsconfig.json:/server/tsconfig.json
+      - ./server/tsconfig.build.json:/server/tsconfig.build.json
+      - ./server/nest-cli.json:/server/nest-cli.json
+      - ./server/eslintrc.js:/server/.eslintrc.js
+      - ./server/prettierrc:/server/.prettierrc
