@@ -32,5 +32,18 @@ services:
       - ./server/tsconfig.json:/server/tsconfig.json
       - ./server/tsconfig.build.json:/server/tsconfig.build.json
       - ./server/nest-cli.json:/server/nest-cli.json
-      - ./server/eslintrc.js:/server/.eslintrc.js
-      - ./server/prettierrc:/server/.prettierrc
+      - ./server/.eslintrc.js:/server/.eslintrc.js
+      - ./server/.prettierrc:/server/.prettierrc
+    depends_on:
+      - db
+
+  db:
+    container_name: next.do_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: next_do
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
