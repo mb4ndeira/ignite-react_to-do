@@ -14,31 +14,7 @@ export default function Tasks() {
   const addTaskInputRef = useRef<HTMLInputElement>(null);
 
   const [addingTo, setAddingTo] = useState<Task["id"] | null>(null);
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: "1",
-      title: "Task 1",
-      completed: false,
-      subtasks: [
-        {
-          id: "2",
-          title: "Subtask 1",
-          completed: false,
-          subtasks: null,
-          parent: "1",
-        },
-      ],
-      parent: null,
-    },
-    {
-      id: "3",
-      title:
-        "As a frontend developer, your goal is to develop a task management application for John, a busy professional struggling to stay organized. You must create auser-friendly and visually appealing interface that allows John to create, track, andremove tasks.",
-      completed: false,
-      subtasks: [],
-      parent: null,
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [grabbedTask, setGrabbedTask] = useState("");
 
   useEffect(() => {
