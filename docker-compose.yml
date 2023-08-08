@@ -24,6 +24,9 @@ services:
       dockerfile: ./server/Dockerfile
       args:
         - PACKAGE_JSON_PATH=./server/package.json
+        - PRISMA_FOLDER_PATH=./server/prisma/
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/next_do?schema=public
     ports:
       - "3030:3030"
     volumes:
@@ -32,6 +35,7 @@ services:
       - ./server/tsconfig.json:/server/tsconfig.json
       - ./server/tsconfig.build.json:/server/tsconfig.build.json
       - ./server/nest-cli.json:/server/nest-cli.json
+      - ./server/prisma:/server/prisma
       - ./server/.eslintrc.js:/server/.eslintrc.js
       - ./server/.prettierrc:/server/.prettierrc
     depends_on:
