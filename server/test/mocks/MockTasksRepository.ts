@@ -9,17 +9,18 @@ import { fakeTasks } from '../data';
 class MockTasksRepository implements ITasksRepository {
   private tasks = fakeTasks;
 
+  async selectAll() {
+    return this.tasks;
+  }
+
   async create(title: string, parent: string | null) {
-    const task = {
+    return {
       id: v4(),
       title,
       completed: false,
       subtasks: !parent ? [] : null,
       parent,
     };
-
-    this.tasks.push(task);
-    return task;
   }
 
   async findById(id: string) {

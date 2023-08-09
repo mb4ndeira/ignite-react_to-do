@@ -23,9 +23,9 @@ describe('TasksController (e2e)', () => {
 
   const http = () => supertest(app.getHttpServer());
 
-  // it('(GET) /tasks/my', () => {
-  //   return http().get('/tasks/my').expect(200).expect(fakeTasks);
-  // });
+  it('(GET) /tasks/my', () => {
+    return http().get('/tasks/my').expect(200).expect(fakeTasks);
+  });
 
   it('(POST) /tasks/', () => {
     const task = {

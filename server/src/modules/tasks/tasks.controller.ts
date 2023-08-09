@@ -1,4 +1,4 @@
-import { Body, Controller, NotFoundException, Post } from '@nestjs/common';
+import { Controller, Body, Get, Post, NotFoundException } from '@nestjs/common';
 
 import { TasksService } from './providers/tasks.service';
 
@@ -10,10 +10,10 @@ const errors = { noParent: { message: 'Invalid parent task', code: 404 } };
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
-  // @Get()
-  // async list() {
-  //   return this.tasksService.list();
-  // }
+  @Get('/my')
+  async list() {
+    return this.tasksService.getAll();
+  }
 
   @Post()
   async create(@Body() data: { title: Task['title']; parent: Task['parent'] }) {

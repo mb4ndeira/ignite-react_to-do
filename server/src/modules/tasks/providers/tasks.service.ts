@@ -7,10 +7,9 @@ import { ITasksRepository } from './repositories/ITasksRepository';
 export class TasksService {
   constructor(private tasksRepository: ITasksRepository) {}
 
-  // async list() {
-  //   const tasks = await this.tasksRepository.getAll();
-  //   return tasks;
-  // }
+  async getAll() {
+    return await this.tasksRepository.selectAll();
+  }
 
   async create(title: Task['title'], parent: Task['parent']) {
     if (parent) {
