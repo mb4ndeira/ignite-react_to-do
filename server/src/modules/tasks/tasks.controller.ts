@@ -1,8 +1,22 @@
-import { Controller, Body, Get, Post, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  NotFoundException,
+  UsePipes,
+} from '@nestjs/common';
+import z from 'zod';
 
+import { ValidateParamsPipe } from '../../common/middlewares/validate-params.pipe';
 import { TasksService } from './providers/tasks.service';
 
-import Task from '../../types/Task';
+import Task, { taskSchema } from '../../types/Task';
+
+const postSchema = z.object({
+  title: taskSchema.shape.title,
+  parent: taskSchema.shape.parent,
+});
 
 const errors = { noParent: { message: 'Invalid parent task', code: 404 } };
 
@@ -16,6 +30,7 @@ export class TasksController {
   }
 
   @Post()
+  @UsePipes(new ValidateParamsPipe(postSchema))
   async create(@Body() data: { title: Task['title']; parent: Task['parent'] }) {
     try {
       const task = await this.tasksService.create(data.title, data.parent);

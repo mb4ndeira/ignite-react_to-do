@@ -85,18 +85,18 @@ describe('TasksController (e2e)', () => {
     });
   });
 
-  // it('(POST) /tasks/ *with invalid body returns 400', () => {
-  //   const invalidTask = {
-  //     tile: 'Buy lettuce', // Misspelled param
-  //     parent: null,
-  //   };
+  it('(POST) /tasks/ *with invalid body returns 400', () => {
+    const invalidTask = {
+      tile: 'Buy lettuce', // Misspelled param
+      parent: null,
+    };
 
-  //   return http()
-  //     .post('/tasks/')
-  //     .send(invalidTask)
-  //     .expect(400)
-  //     .expect({ message: 'Missing body params' });
-  // });
+    return http()
+      .post('/tasks/')
+      .send(invalidTask)
+      .expect(400)
+      .expect({ message: 'Invalid body parameters' });
+  });
 
   // it('(DELETE) /tasks/:task-id', () => {
   //   return http().del('/tasks/:task-id').expect(204);
