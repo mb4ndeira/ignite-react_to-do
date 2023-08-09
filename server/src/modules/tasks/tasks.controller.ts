@@ -13,9 +13,11 @@ import {
 import z from 'zod';
 
 import { ValidateParamsPipe } from '../../common/middlewares/validate-params.pipe';
+import { taskSchema } from 'src/common/schemas/taskSchemas';
+
 import { TasksService } from './providers/tasks.service';
 
-import Task, { taskSchema } from '../../types/Task';
+import Task from '../../common/types/Task';
 
 const postSchema = z.object({
   title: taskSchema.shape.title,

@@ -4,6 +4,15 @@ import { PrismaService } from 'src/common/database/PrismaService';
 
 import { ITasksRepository } from '../ITasksRepository';
 
+const formatSubtasks = (subtasks: any[]) =>
+  subtasks.map(({ id, title, completed, parent_id }) => ({
+    id,
+    title,
+    completed,
+    parent: parent_id,
+    subtasks: null,
+  }));
+
 @Injectable()
 class TasksRepository implements ITasksRepository {
   constructor(private prisma: PrismaService) {}
@@ -19,7 +28,7 @@ class TasksRepository implements ITasksRepository {
       title,
       completed,
       parent: parent_id,
-      subtasks: !parent_id ? subtasks : null,
+      subtasks: !parent_id ? formatSubtasks(subtasks) : null,
     }));
   }
 
@@ -46,7 +55,7 @@ class TasksRepository implements ITasksRepository {
       title,
       completed,
       parent: parent_id,
-      subtasks: subtasks,
+      subtasks: formatSubtasks(subtasks),
     };
   }
 

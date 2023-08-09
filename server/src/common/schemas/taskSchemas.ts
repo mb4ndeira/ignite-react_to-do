@@ -15,8 +15,3 @@ export const taskSchema = z.object({
   parent: z.string().nullable(),
   subtasks: z.array(subtaskSchema),
 });
-
-type Task = z.infer<typeof taskSchema>;
-// & z.infer<typeof subtaskSchema>;
-
-export default Task;

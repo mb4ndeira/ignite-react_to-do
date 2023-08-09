@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { errors } from '../tasks.controller';
 
-import Task from '../../../types/Task';
+import Task from '../../../common/types/Task';
 import { ITasksRepository } from './repositories/ITasksRepository';
 
 @Injectable()

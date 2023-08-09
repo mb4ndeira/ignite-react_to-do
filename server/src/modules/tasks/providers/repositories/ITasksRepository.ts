@@ -1,4 +1,4 @@
-import Task from '../../../../types/Task';
+import Task from '../../../../common/types/Task';
 
 interface ITasksRepository {
   selectAll(): Promise<Task[]>;

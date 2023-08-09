@@ -7,6 +7,8 @@ import { arrayMove } from "@dnd-kit/sortable";
 
 import SortableList, { RenderItem } from "@/library/drag&Drop/SortableList";
 import onKeyPress from "@/helpers/onKeyPress";
+import { addTask, deleteTask, getMyTasks } from "@/services/index";
+
 import Task from "@/types/Task";
 import TaskComponent from "./Task";
 
@@ -15,7 +17,15 @@ export default function Tasks() {
 
   const [addingTo, setAddingTo] = useState<Task["id"] | null>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
+
   const [grabbedTask, setGrabbedTask] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const myTasks = await getMyTasks();
+      setTasks(myTasks);
+    })();
+  }, []);
 
   useEffect(() => {
     if (!addTaskInputRef.current) return;
@@ -23,36 +33,30 @@ export default function Tasks() {
     if (!addingTo) addTaskInputRef.current.placeholder = "Adicionar novo to.do";
   }, [addingTo]);
 
-  const orderedTasks = tasks.flatMap((task) => [
-    task,
-    ...(task["subtasks"] as Task[]),
-  ]);
-
-  const addTask = () => {
+  const handleAddTask = async () => {
     if (!addTaskInputRef.current?.value) return;
 
-    const newTask = {
-      id: Math.random().toString(),
-      title: addTaskInputRef.current?.value,
-      completed: false,
-    };
+    const newTask = await addTask(
+      addTaskInputRef.current?.value,
+      addingTo as Task["parent"],
+    );
+
+    if (!newTask) return;
 
     if (addingTo) {
-      const indexToReplace = orderedTasks.findIndex(
-        (task) => task.id === addingTo,
-      );
+      const indexToReplace = tasks.findIndex((task) => task.id === addingTo);
 
       setTasks([
-        ...orderedTasks.slice(0, indexToReplace),
-        { ...newTask, subtasks: null, parent: addingTo },
-        ...orderedTasks.slice(indexToReplace + 1),
+        ...tasks.slice(0, indexToReplace),
+        newTask,
+        ...tasks.slice(indexToReplace + 1),
       ]);
 
       setAddingTo(null);
 
       return;
     } else {
-      setTasks((prev) => [...prev, { ...newTask, subtasks: [], parent: null }]);
+      setTasks((prev) => [...prev, newTask]);
     }
 
     addTaskInputRef.current.value = "";
@@ -71,13 +75,15 @@ export default function Tasks() {
     setTasks(newTask);
   };
 
-  const deleteTask = (id: string) => {
+  const handleDeleteTask = (id: string) => {
+    deleteTask(id);
+
     const filteredTasks = tasks.filter((task) => task.id != id);
 
     setTasks(filteredTasks);
   };
 
-  const addSubtask = (id: string) => {
+  const handleAddSubtask = (id: string) => {
     if (!addTaskInputRef.current) return;
 
     addTaskInputRef.current?.focus();
@@ -109,7 +115,6 @@ export default function Tasks() {
           droppedOn?.index as number,
         );
       });
-
       return;
     }
   };
@@ -123,8 +128,8 @@ export default function Tasks() {
       grabbedTask={grabbedTask}
       grabTask={() => setGrabbedTask(task.id)}
       completeTask={completeTask}
-      deleteTask={deleteTask}
-      addSubtask={addSubtask}
+      deleteTask={handleDeleteTask}
+      addSubtask={handleAddSubtask}
     />
   );
 
@@ -142,14 +147,14 @@ export default function Tasks() {
             placeholder="Adicionar novo to.do"
             aria-label="Adicionar novo to.do"
             ref={addTaskInputRef}
-            onKeyDown={onKeyPress("Enter", addTask)}
+            onKeyDown={onKeyPress("Enter", handleAddTask)}
             onBlur={() => setAddingTo(null)}
           />
           <button
             className=" flex items-center justify-center rounded-lg border-none bg-green p-3 text-xl font-semibold text-white transition duration-200 hover:brightness-95"
             type="button"
             aria-label="Botão de adição"
-            onClick={addTask}
+            onClick={handleAddTask}
             children={<FiCheckSquare className="text-white" />}
           />
         </div>
@@ -157,7 +162,7 @@ export default function Tasks() {
 
       <div className="mt-12">
         <SortableList
-          data={orderedTasks}
+          data={tasks}
           renderItem={renderTaskItem}
           handleDragEnd={handleDragEnd}
           autoAnimate={true}

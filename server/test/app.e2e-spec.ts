@@ -7,7 +7,7 @@ import { TasksModule } from '../src/modules/tasks/tasks.module';
 import { MockTasksRepository } from './mocks/MockTasksRepository';
 import { fakeTasks } from './data';
 
-import { subtaskSchema, taskSchema } from '../src/types/Task';
+import { subtaskSchema, taskSchema } from '../src/common/schemas/taskSchemas';
 
 describe('TasksController (e2e)', () => {
   let app: INestApplication;
