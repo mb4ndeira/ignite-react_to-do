@@ -26,6 +26,8 @@ class MockTasksRepository implements ITasksRepository {
   async findById(id: string) {
     return this.tasks.find((task) => task.id === id);
   }
+
+  async delete() {}
 }
 
 export { MockTasksRepository };

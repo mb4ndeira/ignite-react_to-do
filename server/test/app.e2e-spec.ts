@@ -95,17 +95,26 @@ describe('TasksController (e2e)', () => {
       .post('/tasks/')
       .send(invalidTask)
       .expect(400)
-      .expect({ message: 'Invalid body parameters' });
+      .expect({ message: 'Invalid parameters' });
   });
 
-  // it('(DELETE) /tasks/:task-id', () => {
-  //   return http().del('/tasks/:task-id').expect(204);
-  // });
+  it('(DELETE) /tasks/:task-id', () => {
+    return http().del(`/tasks/${fakeTasks[0].id}`).expect(204);
+  });
 
-  // test(`(DELETE) /tasks/:unexistent-task-id *returns 404`, () => {
-  //   return http()
-  //     .del('/tasks/:unexistent-task-id')
-  //     .expect(404)
-  //     .expect({ message: 'Resource not found' });
-  // });
+  it('(DELETE) /tasks/:malformed-task-id *returns 400', () => {
+    return http()
+      .del(`/tasks/invalid-id`)
+      .expect(400)
+      .expect({ message: 'Invalid parameters' });
+  });
+
+  test(`(DELETE) /tasks/:unexistent-task-id *returns 404`, () => {
+    const unexistentId = '67a202fd-abad-4cb8-9291-3c4ec002d60b';
+
+    return http()
+      .del(`/tasks/${unexistentId}`)
+      .expect(404)
+      .expect({ message: 'Resource not found' });
+  });
 });

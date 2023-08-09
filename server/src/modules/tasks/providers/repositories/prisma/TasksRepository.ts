@@ -49,6 +49,10 @@ class TasksRepository implements ITasksRepository {
       subtasks: subtasks,
     };
   }
+
+  async delete(id: string) {
+    await this.prisma.task.delete({ where: { id } });
+  }
 }
 
 export { TasksRepository };

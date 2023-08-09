@@ -7,7 +7,7 @@ export class ValidateParamsPipe implements PipeTransform {
 
   transform(value: unknown) {
     if (!this.schema.safeParse(value).success)
-      throw new BadRequestException({ message: 'Invalid body parameters' });
+      throw new BadRequestException({ message: 'Invalid parameters' });
 
     return value;
   }

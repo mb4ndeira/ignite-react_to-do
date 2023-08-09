@@ -1,10 +1,14 @@
+import { Response } from 'express';
 import {
   Controller,
   Get,
   Post,
   Body,
+  Param,
   NotFoundException,
   UsePipes,
+  Delete,
+  Res,
 } from '@nestjs/common';
 import z from 'zod';
 
@@ -18,7 +22,10 @@ const postSchema = z.object({
   parent: taskSchema.shape.parent,
 });
 
-const errors = { noParent: { message: 'Invalid parent task', code: 404 } };
+export const errors = {
+  noParent: { message: 'Invalid parent task', code: 404 },
+  unexistentTask: { message: 'Resource not found', code: 404 },
+};
 
 @Controller('tasks')
 export class TasksController {
@@ -33,11 +40,24 @@ export class TasksController {
   @UsePipes(new ValidateParamsPipe(postSchema))
   async create(@Body() data: { title: Task['title']; parent: Task['parent'] }) {
     try {
-      const task = await this.tasksService.create(data.title, data.parent);
+      const task = await this.tasksService.add(data.title, data.parent);
 
       return task;
     } catch (err) {
       if (err.message === errors.noParent.message)
+        throw new NotFoundException({ message: err.message });
+    }
+  }
+
+  @Delete('/:id')
+  @UsePipes(new ValidateParamsPipe(taskSchema.shape.id))
+  async delete(@Param('id') id: Task['id'], @Res() res: Response) {
+    try {
+      await this.tasksService.delete(id);
+
+      return res.status(204).send();
+    } catch (err) {
+      if (err.message === errors.unexistentTask.message)
         throw new NotFoundException({ message: err.message });
     }
   }
