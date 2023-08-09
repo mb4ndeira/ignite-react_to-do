@@ -10,6 +10,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
+      - ./server/src/types:/server/src/types
       - ./app/src:/app/src
       - ./app/public:/app/public
       - ./app/tsconfig.json:/app/tsconfig.json

@@ -8,19 +8,15 @@ datasource db {
 }
 
 model Task {
-  id         String   @id
+  id         String   @id @default(uuid())
   title      String
-  complete   Boolean  @default(false)
+  completed  Boolean  @default(false)
+  parent_id  String?
+  parent     Task?    @relation("parent_task", fields: [parent_id], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  Subtasks Subtasks[]
-}
+  subtasks Task[] @relation("parent_task")
 
-model Subtasks {
-  id         String   @id
-  parent_id  String
-  parent     Task     @relation(fields: [parent_id], references: [id])
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  @@index([parent_id], name: "idx_parent_id")
 }

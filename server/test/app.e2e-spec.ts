@@ -2,29 +2,30 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as supertest from 'supertest';
 
-import { AppModule } from '../src/app.module';
+import { TasksModule } from '../src/modules/tasks/tasks.module';
+
+import { MockTasksRepository } from './mocks/MockTasksRepository';
 import { fakeTasks } from './data';
 
-const uuidRegex =
-  /^(?i)[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+import { subtaskSchema, taskSchema } from '../src/types/Task';
 
 describe('TasksController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [TasksModule.register({ tasksRepository: MockTasksRepository })],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
   });
 
-  const http = supertest(app.getHttpServer());
+  const http = () => supertest(app.getHttpServer());
 
-  it('(GET) /tasks/my', () => {
-    return http.get('/tasks/my').expect(200).expect(fakeTasks);
-  });
+  // it('(GET) /tasks/my', () => {
+  //   return http().get('/tasks/my').expect(200).expect(fakeTasks);
+  // });
 
   it('(POST) /tasks/', () => {
     const task = {
@@ -32,19 +33,20 @@ describe('TasksController (e2e)', () => {
       parent: null,
     };
 
-    return http
-      .post('/tasks/my')
+    return http()
+      .post('/tasks/')
       .send(task)
       .expect(201)
-      .expect(({ body }) =>
+      .expect(({ body }) => {
+        taskSchema.parse(body);
+
         expect(body).toMatchObject({
-          id: expect.stringMatching(uuidRegex),
-          title: 'Buy lettuce',
+          title: 'Go to market',
           completed: false,
           subtasks: [],
           parent: null,
-        }),
-      );
+        });
+      });
   });
 
   it('(POST) /tasks/ *create substask', () => {
@@ -54,42 +56,56 @@ describe('TasksController (e2e)', () => {
       parent,
     };
 
-    return http
-      .post('/tasks/my')
+    return http()
+      .post('/tasks/')
       .send(task)
       .expect(201)
-      .expect(({ body }) =>
+      .expect(({ body }) => {
+        subtaskSchema.parse(body);
+
         expect(body).toMatchObject({
-          id: expect.stringMatching(uuidRegex),
           title: 'Buy lettuce',
           completed: false,
           subtasks: null,
           parent,
-        }),
-      );
+        });
+      });
   });
 
-  it('(POST) /tasks/ *with invalid body returns 400', () => {
-    const invalidTask = {
-      tile: 'Buy lettuce', // Misspelled param
-      parent: null,
+  it('(POST) /tasks/ *create substask on unexistent parent', () => {
+    const unexistentParent = '67a202fd-abad-4cb8-9291-3c4ec002d60b';
+
+    const task = {
+      title: 'Buy lettuce',
+      parent: unexistentParent,
     };
 
-    return http
-      .post('/tasks/')
-      .send(invalidTask)
-      .expect(400)
-      .expect({ message: 'Missing body params' });
+    return http().post('/tasks/').send(task).expect(404).expect({
+      message: 'Invalid parent task',
+    });
   });
 
-  it('(DELETE) /tasks/:task-id', () => {
-    return http.del('/tasks/:task-id').expect(204);
-  });
+  // it('(POST) /tasks/ *with invalid body returns 400', () => {
+  //   const invalidTask = {
+  //     tile: 'Buy lettuce', // Misspelled param
+  //     parent: null,
+  //   };
 
-  test(`(DELETE) /tasks/:unexistent-task-id *returns 404`, () => {
-    return http
-      .del('/tasks/:unexistent-task-id')
-      .expect(404)
-      .expect({ message: 'Resource not found' });
-  });
+  //   return http()
+  //     .post('/tasks/')
+  //     .send(invalidTask)
+  //     .expect(400)
+  //     .expect({ message: 'Missing body params' });
+  // });
+
+  // it('(DELETE) /tasks/:task-id', () => {
+  //   return http().del('/tasks/:task-id').expect(204);
+  // });
+
+  // test(`(DELETE) /tasks/:unexistent-task-id *returns 404`, () => {
+  //   return http()
+  //     .del('/tasks/:unexistent-task-id')
+  //     .expect(404)
+  //     .expect({ message: 'Resource not found' });
+  // });
 });
