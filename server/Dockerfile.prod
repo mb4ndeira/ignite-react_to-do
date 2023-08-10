@@ -10,12 +10,10 @@ EXPOSE 3000
 
 COPY . .
 
-RUN npx nest build
-
 FROM node:20-alpine AS runtime
 
 WORKDIR /server
 
 COPY --from=base /server .
 
-CMD ["node", "dist/main.js"]
+CMD ["npm", "run", "start"]
